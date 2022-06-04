@@ -17,7 +17,7 @@ router.get("/", function(request, response, next){
 		}
 		else
 		{
-			response.render('sample_data', {title:'Node.js MySQL CRUD Application', action:'list', sampleData:data, message:request.flash('success')});
+			response.render('sample_data', {title:'Node.js MySQL CRUD Application', action:'list', sampleData:data, messemail:request.flash('success')});
 		}
 
 	});
@@ -32,18 +32,20 @@ router.get("/add", function(request, response, next){
 
 router.post("/add_sample_data", function(request, response, next){
 
-	var first_name = request.body.first_name;
+	var complete_name = request.body.complete_name;
 
-	var last_name = request.body.last_name;
+	var phone = request.body.phone;
 
-	var age = request.body.age;
+	var email = request.body.email;
 
-	var gender = request.body.gender;
+	var day = request.body.day;
+
+	var time = request.body.time;
 
 	var query = `
 	INSERT INTO sample_data 
-	(first_name, last_name, age, gender) 
-	VALUES ("${first_name}", "${last_name}", "${age}", "${gender}")
+	(complete_name, phone, email, day, time) 
+	VALUES ("${complete_name}", "${phone}", "${email}", "${day}", "${time}")
 	`;
 
 	database.query(query, function(error, data){
@@ -62,7 +64,7 @@ router.post("/add_sample_data", function(request, response, next){
 
 });
 
-router.get('/edit/:id', function(request, response, next){
+/*router.get('/edit/:id', function(request, response, next){
 
 	var id = request.params.id;
 
@@ -74,26 +76,29 @@ router.get('/edit/:id', function(request, response, next){
 
 	});
 
-});
+});*/
 
-router.post('/edit/:id', function(request, response, next){
+/*router.post('/edit/:id', function(request, response, next){
 
 	var id = request.params.id;
 
-	var first_name = request.body.first_name;
+	var complete_name = request.body.complete_name;
 
-	var last_name = request.body.last_name;
+	var number = request.body.number;
 
-	var age = request.body.age;
+	var email = request.body.email;
 
-	var gender = request.body.gender;
+	var day = request.body.day;
+
+	var time = request.body.time;
 
 	var query = `
 	UPDATE sample_data 
-	SET first_name = "${first_name}", 
-	last_name = "${last_name}", 
-	age = "${age}", 
-	gender = "${gender}" 
+	SET complete_name = "${complete_name}", 
+	number = "${number}", 
+	email = "${email}", 
+	day = "${day}" 
+	time = "${time}" 
 	WHERE id = "${id}"
 	`;
 
@@ -113,7 +118,7 @@ router.post('/edit/:id', function(request, response, next){
 
 });
 
-router.get('/delete/:id', function(request, response, next){
+*/router.get('/delete/:id', function(request, response, next){
 
 	var id = request.params.id; 
 

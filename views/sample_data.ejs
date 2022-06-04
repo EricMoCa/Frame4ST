@@ -13,9 +13,7 @@
     <body>
         <div class="container">
             <h1 class="text-center mt-3 mb-3"><%= title %></h1>
-            
-            <% if(action == 'add') { %>
-
+                
             <div class="card">
                 <div class="card-header">Sample Form</div>
                 <div class="card-body">
@@ -23,144 +21,46 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label>First Name</label>
-                                    <input type="text" name="first_name" id="first_name" class="form-control" />
+                                    <label>Complete Name</label>
+                                    <input type="text" id="complete_name" name="complete_name" required> <br> <br>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label>Last Name</label>
-                                    <input type="text" name="last_name" id="last_name" class="form-control" />
+                                    <label>Number</label>
+                                    <input type="number" id="phone" name="phone" minlength="10" maxlength="10" required> <br> <br>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label>Age</label>
-                                    <input type="number" name="age" id="age" class="form-control" />
+                                    <label>Email</label>
+                                    <input type="email" id="email" name="email" required> <br> <br>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label>Gender</label>
-                                    <select name="gender" class="form-control">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
+                                    <label>Date</label>
+                                    <input type="date" id="day" name="day" required> <br> <br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label>Time</label>
+                                    <input type="time" id ="time" name = "time" min="10:00" max="18:00" required> <br>
                                 </div>
                             </div>
                         </div>
                         <div class="mb-3">
-                            <input type="submit" name="submit_button" class="btn btn-primary" value="Add" />
+                            <input type="submit" name="submit_button" class="btn btn-primary" value="Add"  href="/sample_data/add"/>
                         </div>
                     </form>
                 </div>
             </div>
-
-            <% } else if(action == 'edit') { %>
-            <div class="card">
-                <div class="card-header">Sample Form</div>
-                <div class="card-body">
-                    <form method="POST" action="/sample_data/edit/<%= sampleData.id %>">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>First Name</label>
-                                    <input type="text" name="first_name" id="first_name" class="form-control" value="<%= sampleData.first_name %>" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Last Name</label>
-                                    <input type="text" name="last_name" id="last_name" class="form-control" value="<%= sampleData.last_name %>" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Age</label>
-                                    <input type="number" name="age" id="age" class="form-control" value="<%= sampleData.age %>" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Gender</label>
-                                    <select name="gender" id="gender" class="form-control">
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="submit" name="submit_button" class="btn btn-primary" value="Edit" />
-                        </div>
-                    </form>
-                    <script>
-                    document.getElementById('gender').value="<%= sampleData.gender %>";
-                    </script>
-                </div>
-            </div>
-            <% } else { %>
-                <% if(message.length > 0) { %>
-                <div class="alert alert-success">
-                    <%= message %>
-                </div>
-                <% } %>
-            <div class="card">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col">Sample Data</div>
-                        <div class="col">
-                            <a href="/sample_data/add" class="btn btn-success btn-sm float-end">Add</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Action</th>
-                            </tr>
-                            <%
-                            if(sampleData.length > 0)
-                            {
-                                sampleData.forEach(function(data){
-                            %>
-                            <tr>
-                                <td><%= data.first_name %></td>
-                                <td><%= data.last_name %></td>
-                                <td><%= data.age %></td>
-                                <td><%= data.gender %></td>
-                                <td>
-                                    <a href="/sample_data/edit/<%= data.id %>" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="/sample_data/delete/<%= data.id %>" class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
-                            <%
-                                });
-                            }
-                            else
-                            {
-                            %>
-                            <tr>
-                                <td colspan="5">No Data Found</td>
-                            </tr>
-                            <%
-                            }
-                            %>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <% } %>
+            
 
         </div> 
 
