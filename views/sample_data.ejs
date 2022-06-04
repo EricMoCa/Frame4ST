@@ -11,54 +11,64 @@
         <title></title>
     </head>
     <body>
-        <div class="container">
-            <div class="card">
-                <div class="card-header">Agenda una cita</div>
-                <div class="card-body">
-                    <form method="POST" action="/sample_data/add_sample_data">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Nombre Completo</label>
-                                    <input type="text" id="complete_name" name="complete_name" required> <br> <br>
+        <div class="container">            
+            <% if(action == 'add') { %>
+
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST" action="/sample_data/add_sample_data">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Complete Name</label>
+                                        <input type="text" id="complete_name" name="complete_name" required> <br> <br>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Telephone Number (10 Digits)</label>
+                                        <input type="number" id="phone" name="phone" minlength="10" maxlength="10" required> <br> <br>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Numero Telefonico</label>
-                                    <input type="number" id="phone" name="phone" minlength="10" maxlength="10" required> <br> <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>e-mail</label>
+                                        <input type="email" id="email" name="email" required> <br> <br>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Appointment Day</label>
+                                        <input type="date" id="day" name="day" required> <br> <br>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Correo Electronico</label>
-                                    <input type="email" id="email" name="email" required> <br> <br>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label>Appointment Hour</label>
+                                        <input type="time" id ="time" name = "time" min="10:00" max="18:00" required> <br>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Día de la Cita</label>
-                                    <input type="date" id="day" name="day" required> <br> <br>
-                                </div>
+                            <div class="mb-3">
+                                <input type="submit" name="submit_button" class="btn btn-primary" value="Send Request"  href="/sample_data/add"/>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label>Hora de la Cita</label>
-                                    <input type="time" id ="time" name = "time" min="10:00" max="18:00" required> <br>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <input type="submit" name="submit_button" class="btn btn-primary" value="Enviar"  href="/sample_data/add"/>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
+
+            <% } else { %>
+                <% if(message.length > 0) { %>
+                <div class="alert alert-success">
+                    <%= message %>
+                </div>
+                <% } %>
             
+
+            <% } %>
 
         </div> 
 

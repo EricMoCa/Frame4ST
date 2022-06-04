@@ -17,7 +17,7 @@ router.get("/", function(request, response, next){
 		}
 		else
 		{
-			response.render('sample_data', {title:'Creación de Citas', action:'list', sampleData:data, messemail:request.flash('success')});
+			response.render('sample_data', {title:'Creación de Citas', action:'list', sampleData:data, message:request.flash('success')});
 		}
 
 	});
@@ -64,61 +64,7 @@ router.post("/add_sample_data", function(request, response, next){
 
 });
 
-/*router.get('/edit/:id', function(request, response, next){
-
-	var id = request.params.id;
-
-	var query = `SELECT * FROM sample_data WHERE id = "${id}"`;
-
-	database.query(query, function(error, data){
-
-		response.render('sample_data', {title: 'Edit MySQL Table Data', action:'edit', sampleData:data[0]});
-
-	});
-
-});*/
-
-/*router.post('/edit/:id', function(request, response, next){
-
-	var id = request.params.id;
-
-	var complete_name = request.body.complete_name;
-
-	var number = request.body.number;
-
-	var email = request.body.email;
-
-	var day = request.body.day;
-
-	var time = request.body.time;
-
-	var query = `
-	UPDATE sample_data 
-	SET complete_name = "${complete_name}", 
-	number = "${number}", 
-	email = "${email}", 
-	day = "${day}" 
-	time = "${time}" 
-	WHERE id = "${id}"
-	`;
-
-	database.query(query, function(error, data){
-
-		if(error)
-		{
-			throw error;
-		}
-		else
-		{
-			request.flash('success', 'Sample Data Updated');
-			response.redirect('/sample_data');
-		}
-
-	});
-
-});
-
-*/router.get('/delete/:id', function(request, response, next){
+router.get('/delete/:id', function(request, response, next){
 
 	var id = request.params.id; 
 
