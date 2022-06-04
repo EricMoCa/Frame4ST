@@ -17,7 +17,7 @@ router.get("/", function(request, response, next){
 		}
 		else
 		{
-			response.render('sample_data', {title:'Node.js MySQL CRUD Application', action:'list', sampleData:data, messemail:request.flash('success')});
+			response.render('sample_data', {title:'Creación de Citas', action:'list', sampleData:data, messemail:request.flash('success')});
 		}
 
 	});
